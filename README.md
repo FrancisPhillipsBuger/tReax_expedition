@@ -22,25 +22,7 @@ saddle optimiser enter the search. It is built on SWS Monte-Carlo transition sta
 (MCTSS), in which two walkers start from the reactant and the product and are biased towards
 each other until they meet.
 
-The same staged search runs on analytic 2D potentials and on molecules (GFN2-xTB, ORCA,
-AMBER ff99SB or EMT). Every stage is driven by **one** delayed-acceptance Monte-Carlo kernel
-(`utils/mc/kernel.py`):
 
-1. `S0 Endpoint quench` (`utils/mc/quench.py`) — drain the two endpoints into the states the
-   search connects.
-2. `S1 Tau ladder` (`utils/mc/ladder.py`) — run MCTSS hot first and colder per rung; the coldest
-   rung that still meets sets `tau_explore`.
-3. `S2 Quench labels` (`utils/path/label.py`) — label the MCTSS paths by zero-temperature
-   quenches, bisecting to every change of label.
-4. `S3 Continuation chains` (`utils/path/continuation.py`) — grow chains of restrained quenches
-   along a progress coordinate through every change of label; a certificate (verified links,
-   endpoints in their own basins) turns the chain maximum into an **upper bound** `E_up`.
-5. `S4 Committor` (`utils/committor/stage.py`, *optional*) — the committor at the physical
-   temperature, learned self-consistently and validated with shots.
-6. `S5 Separatrix crossing` (`utils/path/bisect.py`) — the `q = 1/2` point of the best chain of
-   every channel, located by bisection with quenches.
-7. `S6 Transition state ensemble` (`utils/path/tse.py`, *optional*) — a pair held on the two
-   sides of the dividing surface through the S5 crossing samples the TSE at `T_phys`.
 
 ## Why tReax_expedition?
 
