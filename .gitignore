@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Reaction inputs and run outputs are kept out of the repository
+reaction/
+RESULTS*.md

@@ -1,0 +1,12 @@
+# tReax_expedition runtime requirements (Python 3.12, CUDA 12.8)
+
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch==2.8.0+cu128
+numpy==2.5.1
+scipy==1.17.1
+ase==3.28.0
+tblite==0.7.0
+matplotlib==3.11.0
+pandas==3.0.3
+sella==2.5.0
+pytest==9.1.1
